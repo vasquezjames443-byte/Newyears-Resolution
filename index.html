@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Resolution Website</title>
+    <style>
+        body {
+            background-color: #eee;
+            padding: 0px;
+            margin: 0px;
+            font-family: "Arial";
+        }
+
+        .container {
+            margin: 0px auto;
+            width: 80%;
+        }
+
+        .form-group {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-input {
+            display: flex;
+            justify-content: space-between;
+            gap: 10;
+        }
+
+        #submitButton {
+            width: 100%;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-top: 30px;
+            background-color: #fff;
+            width: 100%;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>New Year Resolution Website</h1>
+
+        <!-- CREATE FORM -->
+        <form class="form-group" id="createForm">
+            <strong style="font-size: 1.5em;">Create Resolution</strong>
+            <div class="form-input">
+                <label name="title">Title</label>
+                <input type="text" name="title" style="margin-left: 10px; flex: 1" required>
+            </div>
+            <div>
+                <label name="isDone">Is Done</label>
+                <input type="checkbox" name="isDone">
+            </div>
+            <button id="submitButton" type="submit">Save</button>
+        </form>
+
+        <!-- DISPLAY -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Is Done</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="resolutionsTable">
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+
+        window.addEventListener('load', function (e) {
+            fetchResolutions();
+        });
+
+        const baseUrl = "https://localhost:7223/api/Resolutions"
+
+        // create new year resolution
+        const form = document.getElementById("createForm");
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const formData = new FormData(e.target)
+            const data = {
+                title: formData.get('title'),
+                isDone: formData.get('isDone') === "on" ? true : false
+            }
+
+            try {
+                const response = await fetch(baseUrl, {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+                alert("Resolution created.")
+                fetchResolutions();
+            } catch (err) {
+                alert(err.message)
+            }
+        });
+
+        // fetching new year resolutions
+        async function fetchResolutions() {
+            const response = await fetch(baseUrl);
+            const resolutions = await response.json();
+
+            const table = document.getElementById("resolutionsTable");
+            table.innerHTML = ""
+            let html = ""
+            resolutions.map((item, index) => {
+                html += `
+                <tr id="${index}">
+                    <td>${item.id}</td>
+                    <td>${item.title}</td>
+                    <td>${item.isDone}</td>
+                    <td>${new Date(item.createdAt).toDateString()}</td>
+                    <td>1</td>
+                </tr>
+                `;
+            });
+            table.innerHTML = html;
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+[
+  {
+    "ContainingType": "NewYearResolutionsAPI.Controllers.ResolutionsController",
+    "Method": "GetAll",
+    "RelativePath": "api/Resolutions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "isDone",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "title",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewYearResolutionsAPI.Controllers.ResolutionsController",
+    "Method": "Create",
+    "RelativePath": "api/Resolutions",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createResolution",
+        "Type": "NewYearResolutionsAPI.Controllers.CreateResolution",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewYearResolutionsAPI.Controllers.ResolutionsController",
+    "Method": "GetById",
+    "RelativePath": "api/Resolutions/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewYearResolutionsAPI.Controllers.ResolutionsController",
+    "Method": "UpdateById",
+    "RelativePath": "api/Resolutions/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updateResolution",
+        "Type": "NewYearResolutionsAPI.Controllers.CreateResolution",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewYearResolutionsAPI.Controllers.ResolutionsController",
+    "Method": "DeleteById",
+    "RelativePath": "api/Resolutions/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
